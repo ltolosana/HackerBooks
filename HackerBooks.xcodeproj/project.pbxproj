@@ -12,6 +12,11 @@
 		607088FE1AC2D37800E2F953 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607088FD1AC2D37800E2F953 /* Images.xcassets */; };
 		607089011AC2D37800E2F953 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607088FF1AC2D37800E2F953 /* LaunchScreen.xib */; };
 		6070890D1AC2D37800E2F953 /* HackerBooksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6070890C1AC2D37800E2F953 /* HackerBooksTests.m */; };
+		607089181AC2D44100E2F953 /* LMTBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 607089171AC2D44100E2F953 /* LMTBook.m */; };
+		6070891D1AC2D7D400E2F953 /* LMTBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6070891B1AC2D7D400E2F953 /* LMTBookViewController.m */; };
+		6070891E1AC2D7D400E2F953 /* LMTBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6070891C1AC2D7D400E2F953 /* LMTBookViewController.xib */; };
+		607089231AC33B7500E2F953 /* LMTSimplePDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 607089211AC33B7500E2F953 /* LMTSimplePDFViewController.m */; };
+		607089241AC33B7500E2F953 /* LMTSimplePDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607089221AC33B7500E2F953 /* LMTSimplePDFViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +40,14 @@
 		607089061AC2D37800E2F953 /* HackerBooksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HackerBooksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6070890B1AC2D37800E2F953 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6070890C1AC2D37800E2F953 /* HackerBooksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HackerBooksTests.m; sourceTree = "<group>"; };
+		607089161AC2D44100E2F953 /* LMTBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMTBook.h; sourceTree = "<group>"; };
+		607089171AC2D44100E2F953 /* LMTBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTBook.m; sourceTree = "<group>"; };
+		6070891A1AC2D7D400E2F953 /* LMTBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMTBookViewController.h; sourceTree = "<group>"; };
+		6070891B1AC2D7D400E2F953 /* LMTBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTBookViewController.m; sourceTree = "<group>"; };
+		6070891C1AC2D7D400E2F953 /* LMTBookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMTBookViewController.xib; sourceTree = "<group>"; };
+		607089201AC33B7500E2F953 /* LMTSimplePDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMTSimplePDFViewController.h; sourceTree = "<group>"; };
+		607089211AC33B7500E2F953 /* LMTSimplePDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTSimplePDFViewController.m; sourceTree = "<group>"; };
+		607089221AC33B7500E2F953 /* LMTSimplePDFViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMTSimplePDFViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +89,8 @@
 		607088F51AC2D37800E2F953 /* HackerBooks */ = {
 			isa = PBXGroup;
 			children = (
+				607089191AC2D44D00E2F953 /* Models */,
+				6070891F1AC2D7DD00E2F953 /* Controllers */,
 				607088FA1AC2D37800E2F953 /* AppDelegate.h */,
 				607088FB1AC2D37800E2F953 /* AppDelegate.m */,
 				607088FD1AC2D37800E2F953 /* Images.xcassets */,
@@ -109,6 +124,29 @@
 				6070890B1AC2D37800E2F953 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		607089191AC2D44D00E2F953 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				607089161AC2D44100E2F953 /* LMTBook.h */,
+				607089171AC2D44100E2F953 /* LMTBook.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		6070891F1AC2D7DD00E2F953 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6070891A1AC2D7D400E2F953 /* LMTBookViewController.h */,
+				6070891B1AC2D7D400E2F953 /* LMTBookViewController.m */,
+				6070891C1AC2D7D400E2F953 /* LMTBookViewController.xib */,
+				607089201AC33B7500E2F953 /* LMTSimplePDFViewController.h */,
+				607089211AC33B7500E2F953 /* LMTSimplePDFViewController.m */,
+				607089221AC33B7500E2F953 /* LMTSimplePDFViewController.xib */,
+			);
+			name = Controllers;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,8 +229,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6070891E1AC2D7D400E2F953 /* LMTBookViewController.xib in Resources */,
 				607089011AC2D37800E2F953 /* LaunchScreen.xib in Resources */,
 				607088FE1AC2D37800E2F953 /* Images.xcassets in Resources */,
+				607089241AC33B7500E2F953 /* LMTSimplePDFViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +251,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				607088FC1AC2D37800E2F953 /* AppDelegate.m in Sources */,
+				6070891D1AC2D7D400E2F953 /* LMTBookViewController.m in Sources */,
+				607089231AC33B7500E2F953 /* LMTSimplePDFViewController.m in Sources */,
+				607089181AC2D44100E2F953 /* LMTBook.m in Sources */,
 				607088F91AC2D37800E2F953 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
