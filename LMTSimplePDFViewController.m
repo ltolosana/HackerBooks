@@ -30,18 +30,32 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    // Delgates
+    // Delegates
     
     
     // Sync model & View
     
-    NSData *data = [NSData dataWithContentsOfURL:self.model.pdfURL];
+    NSError *error = nil;
+    NSData *data = [NSData dataWithContentsOfURL:self.model.pdfURL
+                                         options:NSDataReadingMappedIfSafe
+                                           error:&error];
     
-    [self.reader loadData:data
-                 MIMEType:@"application/pdf"
-         textEncodingName:@"UTF-8"
-                  baseURL:nil];
-    
+    if (data == nil) {
+        NSLog(@"Error, no existe el libro '%@' solicitado", self.model.title);
+        [self.navigationController popViewControllerAnimated:NO];
+        [[[UIAlertView alloc] initWithTitle:@"Libro no encontrado"
+                                   message:@"Sorry, no existe el libro solicitado."
+                                  delegate:nil
+                         cancelButtonTitle:@"OK"
+                         otherButtonTitles:nil, nil] show];
+        
+    }else{
+        
+        [self.reader loadData:data
+                     MIMEType:@"application/pdf"
+             textEncodingName:@"UTF-8"
+                      baseURL:nil];
+    }
 
 }
 
