@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 Luis M Tolosana Simon. All rights reserved.
 //
 
+#define BOOK_DID_CHANGE_NOTIFICATION_NAME @"bookDidChangeNotification"
+#define BOOK_KEY @"bookKey"
+
 @import UIKit;
 
 @class LMTLibrary;

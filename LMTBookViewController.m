@@ -22,6 +22,7 @@
     if (self= [super initWithNibName:nil
                               bundle:nil]) {
         _model = model;
+        self.title = model.title;
     }
     
     return self;
@@ -35,7 +36,7 @@
     // Sincronize model and views
     [self syncViewWithModel];
     
-    // whether in SplitVC
+    // Whether in SplitVC
     self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
 
 }

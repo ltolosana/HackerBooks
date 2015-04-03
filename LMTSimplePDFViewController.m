@@ -8,6 +8,7 @@
 
 #import "LMTSimplePDFViewController.h"
 #import "LMTBook.h"
+#import "LMTLibraryTableViewController.h"
 
 @interface LMTSimplePDFViewController ()
 
@@ -21,6 +22,7 @@
     if (self= [super initWithNibName:nil
                               bundle:nil]) {
         _model = model;
+        self.title = model.title;
     }
     
     return self;
@@ -30,6 +32,13 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    // Register notification
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self
+           selector:@selector(notifyThatBookDidChange:)
+               name:BOOK_DID_CHANGE_NOTIFICATION_NAME
+             object:nil];
+   
     // Delegates
     self.reader.delegate = self;
     
@@ -63,6 +72,14 @@
 
 }
 
+-(void) viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    // Unregister notification
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -71,9 +88,24 @@
 #pragma mark - UIWebViewDelegate
 -(void) webViewDidFinishLoad:(UIWebView *)webView{
     
-    // Paro y oculto el activity
     [self.activityView stopAnimating];
     [self.activityView setHidden:YES];
+    
+}
+
+
+#pragma mark - Notifications
+// BOOK_DID_CHANGE_NOTIFICATION_NAME
+-(void)notifyThatBookDidChange:(NSNotification *) notification{
+    
+    // Obtain new book
+    LMTBook *book = [notification.userInfo objectForKey:BOOK_KEY];
+    
+    // Update the model
+    self.model = book;
+    
+    // Return to principal view
+    [self.navigationController popToRootViewControllerAnimated:NO];
     
 }
 

@@ -63,7 +63,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Know about the book
+    // Which book
     LMTBook *book = nil;
     
     book = [self.model bookForTag:[self.model.tags objectAtIndex:indexPath.section]
@@ -75,7 +75,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
     if (cell == nil) {
-        // La tenemos que crear nosotros desde cero
+
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                       reuseIdentifier:cellId];
     }
@@ -86,7 +86,7 @@
     cell.textLabel.text = book.title;
     cell.detailTextLabel.text = [book.authors componentsJoinedByString:@","];
     
-    // Devolverla
+
     return cell;
 }
 
@@ -110,24 +110,32 @@
     book = [self.model bookForTag:[self.model.tags objectAtIndex:indexPath.section]
                           atIndex:indexPath.row];
     
-    // Avisar al delegado (siempre y cuando entienda el mensaje)
+    // Say to delegate
     if ([self.delegate respondsToSelector:@selector(libraryTableViewController:didSelectbook:)]) {
         
-        // Te lo mando
         [self.delegate libraryTableViewController:self
                                     didSelectbook:book];
-         
     }
-}
     
+    // Notify everyone interested
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    
+    NSDictionary *dict = @{BOOK_KEY : book};
+    NSNotification *n = [NSNotification notificationWithName:BOOK_DID_CHANGE_NOTIFICATION_NAME
+                                                      object:self
+                                                    userInfo:dict];
+    
+    [nc postNotification:n];
+
+}
+
 
 #pragma mark - LMTLibraryTableViewControllerDelegate
 -(void) libraryTableViewController:(LMTLibraryTableViewController *)libraryVC didSelectbook:(LMTBook *)book{
     
-    // Creamos un CharacterVC
+
     LMTBookViewController *bookVC = [[LMTBookViewController alloc] initWithModel:book];
     
-    // Hago un push
     [self.navigationController pushViewController:bookVC
                                          animated:YES];
 }

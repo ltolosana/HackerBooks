@@ -54,7 +54,7 @@
         NSURL *imageURL3 = [NSURL URLWithString:@"http://hackershelf.com/media/cache/97/bf/97bfce708365236e0a5f3f9e26b4a796.jpg"];
         NSURL *pdfURL3 = [NSURL URLWithString:@"http://greenteapress.com/compmod/thinkcomplexity.pdf"];
         
-        LMTBook *book3 = [LMTBook bookWithTitle:@"hink Complexityt"
+        LMTBook *book3 = [LMTBook bookWithTitle:@"Think Complexityt"
                                        authors:@[@"Allen B. Downey"]
                                           tags:@[@"programming", @"python", @"data structures"]
                                     isFavorite:NO
