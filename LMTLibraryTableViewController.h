@@ -9,10 +9,21 @@
 @import UIKit;
 
 @class LMTLibrary;
+#import "LMTBook.h"
 
-@interface LMTLibraryTableViewController : UITableViewController
+@class LMTLibraryTableViewController;
+
+@protocol LMTLibraryTableViewControllerDelegate <NSObject>
+
+@optional
+-(void) libraryTableViewController:(LMTLibraryTableViewController *) libraryVC didSelectbook:(LMTBook *) book;
+
+@end
+
+@interface LMTLibraryTableViewController : UITableViewController<LMTLibraryTableViewControllerDelegate>
 
 @property (strong, nonatomic) LMTLibrary *model;
+@property (weak, nonatomic) id<LMTLibraryTableViewControllerDelegate> delegate;
 
 -(id) initWithModel:(LMTLibrary *) model style:(UITableViewStyle) style;
 

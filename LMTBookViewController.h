@@ -9,11 +9,10 @@
 @import UIKit;
 
 @class LMTBook;
+#import "LMTLibraryTableViewController.h"
 
 
-
-
-@interface LMTBookViewController : UIViewController
+@interface LMTBookViewController : UIViewController<UISplitViewControllerDelegate, LMTLibraryTableViewControllerDelegate>
 
 @property (strong, nonatomic) LMTBook *model;
 

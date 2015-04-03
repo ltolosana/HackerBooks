@@ -8,6 +8,7 @@
 
 #import "LMTLibraryTableViewController.h"
 #import "LMTLibrary.h"
+#import "LMTBookViewController.h"
 #import "LMTBook.h"
 
 @interface LMTLibraryTableViewController ()
@@ -102,7 +103,38 @@
     
 }
 
+#pragma mark - Delegate
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    LMTBook *book = nil;
+    book = [self.model bookForTag:[self.model.tags objectAtIndex:indexPath.section]
+                          atIndex:indexPath.row];
+    
+    // Avisar al delegado (siempre y cuando entienda el mensaje)
+    if ([self.delegate respondsToSelector:@selector(libraryTableViewController:didSelectbook:)]) {
+        
+        // Te lo mando
+        [self.delegate libraryTableViewController:self
+                                    didSelectbook:book];
+         
+    }
+}
+    
 
+#pragma mark - LMTLibraryTableViewControllerDelegate
+-(void) libraryTableViewController:(LMTLibraryTableViewController *)libraryVC didSelectbook:(LMTBook *)book{
+    
+    // Creamos un CharacterVC
+    LMTBookViewController *bookVC = [[LMTBookViewController alloc] initWithModel:book];
+    
+    // Hago un push
+    [self.navigationController pushViewController:bookVC
+                                         animated:YES];
+}
+
+    
+    
+    
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

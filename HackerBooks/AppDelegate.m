@@ -80,8 +80,8 @@
     
     
     // Delegates
-//    splitVC.delegate = bookVC;
-//    libraryVC.delegate = bookVC;
+    splitVC.delegate = bookVC;
+    libraryVC.delegate = bookVC;
     
     
     // Making rootVC
