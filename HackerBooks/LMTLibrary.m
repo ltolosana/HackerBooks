@@ -38,7 +38,7 @@
                                       imageURL:imageURL1
                                         pdfURL:pdfURL1];
 
-        // Creating the model
+
         NSURL *imageURL2 = [NSURL URLWithString:@"http://hackershelf.com/media/cache/e5/27/e527064919530802af898a4798318ab9.jpg"];
         NSURL *pdfURL2 = [NSURL URLWithString:@"http://eloquentjavascript.net/Eloquent_JavaScript.pdf"];
        
@@ -50,7 +50,7 @@
                                       imageURL:imageURL2
                                         pdfURL:pdfURL2];
 
-        // Creating the model
+
         NSURL *imageURL3 = [NSURL URLWithString:@"http://hackershelf.com/media/cache/97/bf/97bfce708365236e0a5f3f9e26b4a796.jpg"];
         NSURL *pdfURL3 = [NSURL URLWithString:@"http://greenteapress.com/compmod/thinkcomplexity.pdf"];
         
@@ -61,7 +61,7 @@
                                       imageURL:imageURL3
                                         pdfURL:pdfURL3];
 
-        // Creating the model
+
         NSURL *imageURL4 = [NSURL URLWithString:@"http://hackershelf.com/media/cache/46/61/46613d24474140c53ea6b51386f888ff.jpg"];
         NSURL *pdfURL4 = [NSURL URLWithString:@"http://greenteapress.com/thinkstats/thinkstats.pdf"];
         
@@ -74,9 +74,9 @@
 
         self.books = @[book1, book2, book3, book4];
         
-        //List of every unique tag sorted
-        _tags = [[self.books valueForKeyPath:@"@distinctUnionOfArrays.tags"] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-        
+        //List of every unique tag sorted, begining with Favorites
+        _tags = [@[@"Favorites"] arrayByAddingObjectsFromArray:[[self.books valueForKeyPath:@"@distinctUnionOfArrays.tags"] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
+        NSLog(@"%@", _tags);
     }
     
     return self;

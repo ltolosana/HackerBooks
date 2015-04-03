@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "LMTBookViewController.h"
+#import "LMTLibraryTableViewController.h"
 #import "LMTLibrary.h"
 
 
@@ -25,13 +26,10 @@
     // Creating the model
     LMTLibrary *library = [[LMTLibrary alloc] init];
     
-    // Creating the controller
-    LMTBookViewController *bookVC = [[LMTBookViewController alloc] initWithModel:library];
     
-    // Creating de combinator
-    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:bookVC];
+    [self configureForPadWithModel:library];
     
-    self.window.rootViewController = navVC;
+    
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -58,6 +56,37 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+#pragma mark - Utils
+-(void) configureForPadWithModel:(LMTLibrary *) library {
+    
+    // Creating the controllers
+    LMTLibraryTableViewController *libraryVC = [[LMTLibraryTableViewController alloc] initWithModel:library
+                                                                                              style:UITableViewStylePlain];
+    
+    LMTBookViewController *bookVC = [[LMTBookViewController alloc] initWithModel:[library bookForTag:[library.tags objectAtIndex:1] atIndex:0]];
+    
+    // Creating the Navigation Controllers
+    UINavigationController *libraryNav = [[UINavigationController alloc] initWithRootViewController:libraryVC];
+    
+    UINavigationController *bookNav = [[UINavigationController alloc] initWithRootViewController:bookVC];
+
+    
+    // Creating de combinator
+    UISplitViewController *splitVC = [[UISplitViewController alloc] init];
+    splitVC.viewControllers = @[libraryNav, bookNav];
+    
+    
+    // Delegates
+//    splitVC.delegate = bookVC;
+//    libraryVC.delegate = bookVC;
+    
+    
+    // Making rootVC
+    self.window.rootViewController = splitVC;
+    
 }
 
 @end

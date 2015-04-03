@@ -11,11 +11,12 @@
 
 @class LMTBook;
 
-@interface LMTSimplePDFViewController : UIViewController
+@interface LMTSimplePDFViewController : UIViewController<UIWebViewDelegate>
 
 @property (strong, nonatomic) LMTBook *model;
 
 @property (weak, nonatomic) IBOutlet UIWebView *reader;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activityView;
 
 -(id) initWithModel:(LMTBook *) model;
 

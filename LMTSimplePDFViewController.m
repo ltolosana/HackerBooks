@@ -31,7 +31,11 @@
     [super viewWillAppear:animated];
     
     // Delegates
+    self.reader.delegate = self;
     
+    [self.activityView setHidden:NO];
+    [self.activityView startAnimating];
+
     
     // Sync model & View
     
@@ -42,12 +46,12 @@
     
     if (data == nil) {
         NSLog(@"Error, no existe el libro '%@' solicitado", self.model.title);
-        [self.navigationController popViewControllerAnimated:NO];
         [[[UIAlertView alloc] initWithTitle:@"Libro no encontrado"
                                    message:@"Sorry, no existe el libro solicitado."
                                   delegate:nil
                          cancelButtonTitle:@"OK"
                          otherButtonTitles:nil, nil] show];
+        [self.navigationController popViewControllerAnimated:NO];
         
     }else{
         
@@ -63,6 +67,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - UIWebViewDelegate
+-(void) webViewDidFinishLoad:(UIWebView *)webView{
+    
+    // Paro y oculto el activity
+    [self.activityView stopAnimating];
+    [self.activityView setHidden:YES];
+    
+}
+
 
 /*
 #pragma mark - Navigation

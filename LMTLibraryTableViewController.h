@@ -6,8 +6,14 @@
 //  Copyright (c) 2015 Luis M Tolosana Simon. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+
+@class LMTLibrary;
 
 @interface LMTLibraryTableViewController : UITableViewController
+
+@property (strong, nonatomic) LMTLibrary *model;
+
+-(id) initWithModel:(LMTLibrary *) model style:(UITableViewStyle) style;
 
 @end

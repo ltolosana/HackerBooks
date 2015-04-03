@@ -33,7 +33,7 @@
                         <action selector="changeToFavorite:" destination="-1" eventType="valueChanged" id="bga-SK-53j"/>
                     </connections>
                 </switch>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="wpc-Kq-Vok">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="wpc-Kq-Vok">
                     <rect key="frame" x="8" y="249" width="752" height="680"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>

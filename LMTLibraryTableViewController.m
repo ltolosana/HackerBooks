@@ -7,12 +7,27 @@
 //
 
 #import "LMTLibraryTableViewController.h"
+#import "LMTLibrary.h"
+#import "LMTBook.h"
 
 @interface LMTLibraryTableViewController ()
 
 @end
 
 @implementation LMTLibraryTableViewController
+
+#pragma mark - Init
+-(id) initWithModel:(LMTLibrary *) model style:(UITableViewStyle) style{
+    
+    if (self = [super initWithStyle:style]) {
+        
+        _model = model;
+        self.title = @"HackerBooks";
+    }
+    
+    return self;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,26 +47,61 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
-    return 0;
+    return [self.model.tags count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
+
     // Return the number of rows in the section.
-    return 0;
+    return [self.model bookCountForTag:[self.model.tags objectAtIndex:section]];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    // Know about the book
+    LMTBook *book = nil;
     
+    book = [self.model bookForTag:[self.model.tags objectAtIndex:indexPath.section]
+                          atIndex:indexPath.row];
+    
+    
+    // Create the cell
+    static NSString *cellId = @"BookCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    
+    if (cell == nil) {
+        // La tenemos que crear nosotros desde cero
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                                      reuseIdentifier:cellId];
+    }
+    
+    // Configurarla
+    // Es decir, sincronizar modelo (personaje --> vista (celda)
+//    cell.imageView.image = book.;
+    cell.textLabel.text = book.title;
+    cell.detailTextLabel.text = [book.authors componentsJoinedByString:@","];
+    
+    // Devolverla
     return cell;
 }
-*/
+
+
+
+-(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    
+    if (section == 0) {
+        //Favorites Books
+        return @"Favoritos";
+    }else{
+        return [self.model.tags objectAtIndex:section];
+    }
+    
+}
+
 
 /*
 // Override to support conditional editing of the table view.
