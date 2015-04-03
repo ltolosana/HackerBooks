@@ -11,7 +11,7 @@
 
 @interface LMTLibrary ()
 
-@property (nonatomic, strong) NSArray *books;
+@property (nonatomic, strong) NSMutableArray *books;
 
 @end
 
@@ -28,7 +28,7 @@
     if (self = [super init]) {
         
         // Creating the model
-        NSURL *imageURL1 = [NSURL URLWithString:@"http://hackershelf.com/media/cache/b4/24/b42409de128aa7f1c9abbbfa549914de.jpg"];
+/*        NSURL *imageURL1 = [NSURL URLWithString:@"http://hackershelf.com/media/cache/b4/24/b42409de128aa7f1c9abbbfa549914de.jpg"];
         NSURL *pdfURL1 = [NSURL URLWithString:@"https://progit2.s3.amazonaws.com/en/2015-03-06-439c2/progit-en.376.pdf"];
         
         LMTBook *book1 = [LMTBook bookWithTitle:@"Pro Git"
@@ -73,6 +73,41 @@
                                         pdfURL:pdfURL4];
 
         self.books = @[book1, book2, book3, book4];
+*/
+        //////////////////////////////
+        
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://keepcodigtest.blob.core.windows.net/containerblobstest/books_readable.json"]];
+        NSURLResponse *response = [[NSURLResponse alloc] init];
+        NSError *error;
+        NSData *data = [NSURLConnection sendSynchronousRequest:request
+                                             returningResponse:&response
+                                                         error:&error];
+        
+        if (data != nil) {
+            
+            NSArray *JSONObjects = [NSJSONSerialization JSONObjectWithData:data
+                                                                   options:kNilOptions
+                                                                     error:&error];
+            
+            if (JSONObjects != nil) {
+                
+                for (NSDictionary *dict in JSONObjects) {
+                    LMTBook *book = [[LMTBook alloc] initWithDictionary:dict];
+                    
+                    if (!self.books) {
+                        self.books = [NSMutableArray arrayWithObject:book];
+                    }else{
+                        [self.books addObject:book];
+                    }
+                    
+                }
+            }else{
+                NSLog(@"Error al procesar JSON: %@", error.localizedDescription);
+            }
+        }else{
+            NSLog(@"Error al descargar datos del servidor: %@", error.localizedDescription);
+        }
+        
         
         //List of every unique tag sorted, begining with Favorites
         _tags = [@[@"Favorites"] arrayByAddingObjectsFromArray:[[self.books valueForKeyPath:@"@distinctUnionOfArrays.tags"] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];

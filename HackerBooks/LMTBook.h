@@ -7,6 +7,7 @@
 //
 
 @import Foundation;
+@import UIKit;
 
 @interface LMTBook : NSObject
 
@@ -15,6 +16,7 @@
 @property (strong, nonatomic) NSArray *tags;
 @property (nonatomic) BOOL isFavorite;
 @property (strong, nonatomic) NSURL *imageURL;
+@property (strong, nonatomic, readonly) UIImage *image;
 @property (strong, nonatomic) NSURL *pdfURL;
 
 // Class methods
@@ -33,6 +35,7 @@
            imageURL:(NSURL *) imageURL
              pdfURL:(NSURL *) pdfURL;
 
-
+// Init from JSON
+-(id) initWithDictionary:(NSDictionary *) dict;
 
 @end

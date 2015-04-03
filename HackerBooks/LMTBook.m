@@ -10,6 +10,18 @@
 
 @implementation LMTBook
 
+@synthesize  image = _image;
+
+#pragma mark - Properties
+-(UIImage *) image{
+    
+    if (_image == nil) {
+        _image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.imageURL]];
+    }
+    return _image;
+}
+
+
 #pragma mark - Class methods
 +(instancetype) bookWithTitle:(NSString *) title
                       authors:(NSArray *) authors
@@ -46,5 +58,29 @@
     return self;
 }
 
+-(id) initWithDictionary:(NSDictionary *) dict{
+    
+    return [self initWithTitle:[dict objectForKey:@"title"]
+                       authors:[[dict objectForKey:@"authors"] componentsSeparatedByString:@", "]
+                          tags:[[dict objectForKey:@"tags"] componentsSeparatedByString:@", "]
+                    isFavorite:NO
+                      imageURL:[NSURL URLWithString:[dict objectForKey:@"image_url"]]
+                        pdfURL:[NSURL URLWithString:[dict objectForKey:@"pdf_url"]]];
+            
+    
+}
+
+
+#pragma mark - Utils
+/*
+ -(NSArray *) extractTagsFromJSONArray:(NSArray *) JSONArray{
+    NSMutableArray *tags = [NSMutableArray arrayWithCapacity:[JSONArray count]];
+    
+    for (NSDictionary *dict in JSONArray) {
+        [tags addObject:[dict objectForKey:@"tags"]];
+    }
+    return tags;
+}
+*/
 
 @end

@@ -107,7 +107,8 @@
     self.authorsLabel.text = [self.model.authors componentsJoinedByString:@", "];
     self.tagsLabel.text = [self.model.tags componentsJoinedByString:@", "];
     [self.isFavoriteSwitch setOn:self.model.isFavorite];
-    self.photoView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.model.imageURL]];
+//    self.photoView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.model.imageURL]];
+    self.photoView.image = self.model.image;
 }
 
 
