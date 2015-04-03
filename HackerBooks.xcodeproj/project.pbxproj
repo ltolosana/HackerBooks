@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		600E27221ACE8D9C0057CDB3 /* LMTLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 600E27211ACE8D9C0057CDB3 /* LMTLibrary.m */; };
+		600E27251ACE90650057CDB3 /* LMTLibraryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 600E27241ACE90650057CDB3 /* LMTLibraryTableViewController.m */; };
 		607088F91AC2D37800E2F953 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 607088F81AC2D37800E2F953 /* main.m */; };
 		607088FC1AC2D37800E2F953 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 607088FB1AC2D37800E2F953 /* AppDelegate.m */; };
 		607088FE1AC2D37800E2F953 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607088FD1AC2D37800E2F953 /* Images.xcassets */; };
@@ -30,6 +32,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		600E27201ACE8D9C0057CDB3 /* LMTLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMTLibrary.h; sourceTree = "<group>"; };
+		600E27211ACE8D9C0057CDB3 /* LMTLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTLibrary.m; sourceTree = "<group>"; };
+		600E27231ACE90650057CDB3 /* LMTLibraryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMTLibraryTableViewController.h; sourceTree = "<group>"; };
+		600E27241ACE90650057CDB3 /* LMTLibraryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTLibraryTableViewController.m; sourceTree = "<group>"; };
 		607088F31AC2D37800E2F953 /* HackerBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607088F71AC2D37800E2F953 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607088F81AC2D37800E2F953 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -131,6 +137,8 @@
 			children = (
 				607089161AC2D44100E2F953 /* LMTBook.h */,
 				607089171AC2D44100E2F953 /* LMTBook.m */,
+				600E27201ACE8D9C0057CDB3 /* LMTLibrary.h */,
+				600E27211ACE8D9C0057CDB3 /* LMTLibrary.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -144,6 +152,8 @@
 				607089201AC33B7500E2F953 /* LMTSimplePDFViewController.h */,
 				607089211AC33B7500E2F953 /* LMTSimplePDFViewController.m */,
 				607089221AC33B7500E2F953 /* LMTSimplePDFViewController.xib */,
+				600E27231ACE90650057CDB3 /* LMTLibraryTableViewController.h */,
+				600E27241ACE90650057CDB3 /* LMTLibraryTableViewController.m */,
 			);
 			name = Controllers;
 			path = ..;
@@ -253,7 +263,9 @@
 				607088FC1AC2D37800E2F953 /* AppDelegate.m in Sources */,
 				6070891D1AC2D7D400E2F953 /* LMTBookViewController.m in Sources */,
 				607089231AC33B7500E2F953 /* LMTSimplePDFViewController.m in Sources */,
+				600E27221ACE8D9C0057CDB3 /* LMTLibrary.m in Sources */,
 				607089181AC2D44100E2F953 /* LMTBook.m in Sources */,
+				600E27251ACE90650057CDB3 /* LMTLibraryTableViewController.m in Sources */,
 				607088F91AC2D37800E2F953 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,6 +451,7 @@
 				607089121AC2D37800E2F953 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		607089131AC2D37800E2F953 /* Build configuration list for PBXNativeTarget "HackerBooksTests" */ = {
 			isa = XCConfigurationList;
@@ -447,6 +460,7 @@
 				607089151AC2D37800E2F953 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
