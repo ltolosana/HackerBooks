@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LMTBookViewController">
             <connections>
                 <outlet property="authorsLabel" destination="Az4-q2-OgI" id="UlT-TP-EQ5"/>
+                <outlet property="isFavoriteSwitch" destination="VAC-9W-gM4" id="BaO-cF-KpV"/>
                 <outlet property="photoView" destination="wpc-Kq-Vok" id="Qir-dw-6Ki"/>
                 <outlet property="tagsLabel" destination="tVc-90-SDu" id="Jfk-hG-geY"/>
                 <outlet property="titleLabel" destination="PSK-eg-MN5" id="jAW-er-Ozr"/>
@@ -28,6 +29,9 @@
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="VAC-9W-gM4">
                     <rect key="frame" x="694" y="97" width="51" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="changeToFavorite:" destination="-1" eventType="valueChanged" id="bga-SK-53j"/>
+                    </connections>
                 </switch>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="wpc-Kq-Vok">
                     <rect key="frame" x="8" y="249" width="752" height="680"/>

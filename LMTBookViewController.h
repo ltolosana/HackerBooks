@@ -20,10 +20,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tagsLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *isFavoriteSwitch;
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
 
 -(id) initWithModel:(LMTBook *) model;
 
 -(IBAction)displayPDF:(id)sender;
+-(IBAction)changeToFavorite:(id)sender;
 
 @end

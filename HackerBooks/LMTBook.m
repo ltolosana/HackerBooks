@@ -14,11 +14,13 @@
 +(instancetype) bookWithTitle:(NSString *) title
                       authors:(NSArray *) authors
                          tags:(NSArray *) tags
+                   isFavorite:(BOOL) isFavorite
                      imageURL:(NSURL *) imageURL
                        pdfURL:(NSURL *) pdfURL{
     return [[self alloc] initWithTitle:title
                                authors:authors
                                   tags:tags
+                            isFavorite:isFavorite
                               imageURL:imageURL
                                 pdfURL:pdfURL];
 }
@@ -27,6 +29,7 @@
 -(id) initWithTitle:(NSString *) title
             authors:(NSArray *) authors
                tags:(NSArray *) tags
+         isFavorite:(BOOL) isFavorite
            imageURL:(NSURL *) imageURL
              pdfURL:(NSURL *) pdfURL{
     
@@ -34,6 +37,7 @@
         _title = title;
         _authors = authors;
         _tags = tags;
+        _isFavorite = isFavorite;
         _imageURL = imageURL;
         _pdfURL = pdfURL;
         

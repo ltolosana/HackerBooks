@@ -28,10 +28,11 @@
     NSURL *pdfURL = [NSURL URLWithString:@"https://progit2.s3.amazonaws.com/en/2015-03-06-439c2/progit-en.376XXX.pdf"];
     
     LMTBook *book = [LMTBook bookWithTitle:@"Pro Git"
-                                    authors:@[@"cott Chacon", @"Ben Straub"]
-                                       tags:@[@"version control", @"git"]
-                                   imageURL:imageURL
-                                     pdfURL:pdfURL];
+                                   authors:@[@"cott Chacon", @"Ben Straub"]
+                                      tags:@[@"version control", @"git"]
+                                isFavorite:NO
+                                  imageURL:imageURL
+                                    pdfURL:pdfURL];
     
     // Creating the cotroller
     LMTBookViewController *bookVC = [[LMTBookViewController alloc] initWithModel:book];

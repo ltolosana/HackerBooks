@@ -10,9 +10,10 @@
 
 @interface LMTBook : NSObject
 
-@property (strong, nonatomic) NSString *title;
+@property (copy, nonatomic) NSString *title;
 @property (strong, nonatomic) NSArray *authors;
 @property (strong, nonatomic) NSArray *tags;
+@property (nonatomic) BOOL isFavorite;
 @property (strong, nonatomic) NSURL *imageURL;
 @property (strong, nonatomic) NSURL *pdfURL;
 
@@ -20,6 +21,7 @@
 +(instancetype) bookWithTitle:(NSString *) title
                       authors:(NSArray *) authors
                          tags:(NSArray *) tags
+                   isFavorite:(BOOL) isFavorite
                      imageURL:(NSURL *) imageURL
                        pdfURL:(NSURL *) pdfURL;
 
@@ -27,6 +29,7 @@
 -(id) initWithTitle:(NSString *) title
             authors:(NSArray *) authors
                tags:(NSArray *) tags
+         isFavorite:(BOOL) isFavorite
            imageURL:(NSURL *) imageURL
              pdfURL:(NSURL *) pdfURL;
 
