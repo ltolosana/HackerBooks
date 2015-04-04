@@ -23,8 +23,81 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
+    
+    NSError *error;
+    NSData *data = nil;
+    
+    // Check if it's the first time we run the App
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    NSString *str = [def objectForKey:JSON_LOCAL_URL];
+    
+    if (str == nil) {
+        
+        // It's the first time
+        
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://keepcodigtest.blob.core.windows.net/containerblobstest/books_readable.json"]];
+        NSURLResponse *response = [[NSURLResponse alloc] init];
+        data = [NSURLConnection sendSynchronousRequest:request
+                                     returningResponse:&response
+                                                 error:&error];
+        
+        if (data != nil) {
+            
+            // Save JSONData in local documents
+            NSFileManager *fm = [NSFileManager defaultManager];
+            NSURL *url = [[fm URLsForDirectory: NSDocumentDirectory
+                                     inDomains:NSUserDomainMask] lastObject];
+            
+            // Append the name
+            url = [url URLByAppendingPathComponent:JSON_NAME];
+            
+            // Save
+            BOOL rc = [data writeToURL:url
+                               options:NSDataWritingAtomic
+                                 error:&error];
+            
+            if (rc == NO) {
+                NSLog(@"Error al guardar el JSON en la carpeta de documentos: %@", error.localizedDescription);
+            }else{
+                
+                // Save to NSUSERDEFAULTS, so no more First Time
+                [def setObject:JSON_NAME forKey:JSON_LOCAL_URL];
+                [def synchronize];
+                
+            }
+        }else{
+            // Failed to load JSON from internet
+            NSLog(@"No se puede cargar el JSON: %@", error.localizedDescription);
+            [[[UIAlertView alloc] initWithTitle:@"Error General"
+                                        message:@"No se puede cargar el JSON."
+                                       delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil, nil] show];
+            
+            
+        }
+    }else{
+        // Not the first time, so load JSON from local documents
+        NSFileManager *fm = [NSFileManager defaultManager];
+        
+        NSURL *url = [[fm URLsForDirectory: NSDocumentDirectory
+                                 inDomains:NSUserDomainMask] lastObject];
+        url = [url URLByAppendingPathComponent:JSON_NAME];
+        
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        NSURLResponse *response = [[NSURLResponse alloc] init];
+        data = [NSURLConnection sendSynchronousRequest:request
+                                     returningResponse:&response
+                                                 error:&error];
+        if (data == nil) {
+            NSLog(@"Error al cargar el JSON de local, lo deberia cargar de la red");
+        }
+        
+    }
+    
+    
     // Creating the model
-    LMTLibrary *library = [[LMTLibrary alloc] init];
+    LMTLibrary *library = [[LMTLibrary alloc] initWithData:data];
     
     
     [self configureForPadWithModel:library];

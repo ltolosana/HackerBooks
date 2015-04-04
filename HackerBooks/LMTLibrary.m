@@ -23,7 +23,7 @@
 
 
 #pragma mark - Init
--(id) init{
+-(id) initWithData:(NSData *) data{
     
     if (self = [super init]) {
         
@@ -75,7 +75,7 @@
         self.books = @[book1, book2, book3, book4];
 */
         //////////////////////////////
-        
+/*
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://keepcodigtest.blob.core.windows.net/containerblobstest/books_readable.json"]];
         NSURLResponse *response = [[NSURLResponse alloc] init];
         NSError *error;
@@ -85,28 +85,48 @@
         
         if (data != nil) {
             
-            NSArray *JSONObjects = [NSJSONSerialization JSONObjectWithData:data
-                                                                   options:kNilOptions
-                                                                     error:&error];
+            // Save JSONData in local documents
+            NSFileManager *fm = [NSFileManager defaultManager];
+            NSURL *url = [[fm URLsForDirectory: NSDocumentDirectory
+                                     inDomains:NSUserDomainMask] lastObject];
             
-            if (JSONObjects != nil) {
+            // Append the name
+            url = [url URLByAppendingPathComponent:@"books_readable.json"];
+            
+            // Save
+            BOOL rc = [data writeToURL:url
+                               options:NSDataWritingAtomic
+                                 error:&error];
+            
+            if (rc == NO) {
+                NSLog(@"Error al guardar el JSON en la carpeta de documentos: %@", error.localizedDescription);
+            }
+*/            
+  /////////////////////////////
+        
+        NSError *error;
+        NSArray *JSONObjects = [NSJSONSerialization JSONObjectWithData:data
+                                                               options:kNilOptions
+                                                                 error:&error];
+        
+        if (JSONObjects != nil) {
+            
+            for (NSDictionary *dict in JSONObjects) {
+                LMTBook *book = [[LMTBook alloc] initWithDictionary:dict];
                 
-                for (NSDictionary *dict in JSONObjects) {
-                    LMTBook *book = [[LMTBook alloc] initWithDictionary:dict];
-                    
-                    if (!self.books) {
-                        self.books = [NSMutableArray arrayWithObject:book];
-                    }else{
-                        [self.books addObject:book];
-                    }
-                    
+                if (!self.books) {
+                    self.books = [NSMutableArray arrayWithObject:book];
+                }else{
+                    [self.books addObject:book];
                 }
-            }else{
-                NSLog(@"Error al procesar JSON: %@", error.localizedDescription);
+                
             }
         }else{
-            NSLog(@"Error al descargar datos del servidor: %@", error.localizedDescription);
+            NSLog(@"Error al procesar JSON: %@", error.localizedDescription);
         }
+        //        }else{
+        //            NSLog(@"Error al descargar datos del servidor: %@", error.localizedDescription);
+        //        }
         
         
         //List of every unique tag sorted, begining with Favorites
@@ -116,6 +136,7 @@
     
     return self;
 }
+
 
 
 -(NSUInteger) bookCountForTag:(NSString*) tag{
