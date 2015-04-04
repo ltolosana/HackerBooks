@@ -48,27 +48,7 @@
     
     // Sync model & View
     
-    NSError *error = nil;
-    NSData *data = [NSData dataWithContentsOfURL:self.model.pdfURL
-                                         options:NSDataReadingMappedIfSafe
-                                           error:&error];
-    
-    if (data == nil) {
-        NSLog(@"Error, no existe el libro '%@' solicitado", self.model.title);
-        [[[UIAlertView alloc] initWithTitle:@"Libro no encontrado"
-                                   message:@"Sorry, no existe el libro solicitado."
-                                  delegate:nil
-                         cancelButtonTitle:@"OK"
-                         otherButtonTitles:nil, nil] show];
-        [self.navigationController popViewControllerAnimated:NO];
-        
-    }else{
-        
-        [self.reader loadData:data
-                     MIMEType:@"application/pdf"
-             textEncodingName:@"UTF-8"
-                      baseURL:nil];
-    }
+    [self syncModelAndView];
 
 }
 
@@ -109,6 +89,32 @@
     
 }
 
+#pragma mark - syncModelAndView
+-(void) syncModelAndView{
+    
+    NSError *error = nil;
+    NSData *data = [NSData dataWithContentsOfURL:self.model.pdfURL
+                                         options:NSDataReadingMappedIfSafe
+                                           error:&error];
+    
+    if (data == nil) {
+        NSLog(@"Error, no existe el libro '%@' solicitado", self.model.title);
+        [[[UIAlertView alloc] initWithTitle:@"Libro no encontrado"
+                                    message:@"Sorry, no existe el libro solicitado."
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil, nil] show];
+        [self.navigationController popViewControllerAnimated:NO];
+        
+    }else{
+        
+        [self.reader loadData:data
+                     MIMEType:@"application/pdf"
+             textEncodingName:@"UTF-8"
+                      baseURL:nil];
+    }
+    
+}
 
 /*
 #pragma mark - Navigation

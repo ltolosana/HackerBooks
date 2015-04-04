@@ -84,25 +84,30 @@
                                  inDomains:NSUserDomainMask] lastObject];
         url = [url URLByAppendingPathComponent:JSON_NAME];
         
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        NSURLResponse *response = [[NSURLResponse alloc] init];
-        data = [NSURLConnection sendSynchronousRequest:request
-                                     returningResponse:&response
-                                                 error:&error];
+        data = [NSData dataWithContentsOfURL:url
+                                     options:NSDataReadingMappedIfSafe
+                                       error:&error];
         if (data == nil) {
             NSLog(@"Error al cargar el JSON de local, lo deberia cargar de la red");
         }
         
     }
     
+    NSArray *JSONObjects = [NSJSONSerialization JSONObjectWithData:data
+                                                           options:kNilOptions
+                                                             error:&error];
     
-    // Creating the model
-    LMTLibrary *library = [[LMTLibrary alloc] initWithData:data];
-    
-    
-    [self configureForPadWithModel:library];
-    
-    
+    if (JSONObjects != nil) {
+        
+        // Creating the model
+        LMTLibrary *library = [[LMTLibrary alloc] initWithArray:JSONObjects];
+        
+        [self configureForPadWithModel:library];
+        
+    }else{
+        NSLog(@"Error al procesar JSON: %@", error.localizedDescription);
+    }
+   
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

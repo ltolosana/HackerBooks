@@ -15,7 +15,7 @@
 
 @property (nonatomic, readonly) NSUInteger booksCount;
 
--(id) initWithData:(NSData *) data;
+-(id) initWithArray:(NSArray *) array;
 
 -(NSUInteger) bookCountForTag:(NSString*) tag;
 -(NSArray *) booksForTag: (NSString *) tag;

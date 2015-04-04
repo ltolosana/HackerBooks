@@ -23,7 +23,7 @@
 
 
 #pragma mark - Init
--(id) initWithData:(NSData *) data{
+-(id) initWithArray:(NSArray *) array{
     
     if (self = [super init]) {
         
@@ -104,14 +104,8 @@
 */            
   /////////////////////////////
         
-        NSError *error;
-        NSArray *JSONObjects = [NSJSONSerialization JSONObjectWithData:data
-                                                               options:kNilOptions
-                                                                 error:&error];
-        
-        if (JSONObjects != nil) {
             
-            for (NSDictionary *dict in JSONObjects) {
+            for (NSDictionary *dict in array) {
                 LMTBook *book = [[LMTBook alloc] initWithDictionary:dict];
                 
                 if (!self.books) {
@@ -121,9 +115,6 @@
                 }
                 
             }
-        }else{
-            NSLog(@"Error al procesar JSON: %@", error.localizedDescription);
-        }
         //        }else{
         //            NSLog(@"Error al descargar datos del servidor: %@", error.localizedDescription);
         //        }
