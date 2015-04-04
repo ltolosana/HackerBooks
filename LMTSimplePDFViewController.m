@@ -91,28 +91,52 @@
 
 #pragma mark - syncModelAndView
 -(void) syncModelAndView{
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSURL *localpdfURL = [[fm URLsForDirectory:NSDocumentDirectory
+                                     inDomains:NSUserDomainMask] lastObject];
+    localpdfURL = [localpdfURL URLByAppendingPathComponent:[self.model.title stringByAppendingPathExtension:@"pdf"]];
     
-    NSError *error = nil;
-    NSData *data = [NSData dataWithContentsOfURL:self.model.pdfURL
-                                         options:NSDataReadingMappedIfSafe
-                                           error:&error];
+    NSError *error;
+    NSData *data = nil;
     
+    // Try to load pdf locally
+    data = [NSData dataWithContentsOfURL:localpdfURL
+                                 options:NSDataReadingMappedIfSafe
+                                   error:&error];
     if (data == nil) {
-        NSLog(@"Error, no existe el libro '%@' solicitado", self.model.title);
-        [[[UIAlertView alloc] initWithTitle:@"Libro no encontrado"
-                                    message:@"Sorry, no existe el libro solicitado."
-                                   delegate:nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil, nil] show];
-        [self.navigationController popViewControllerAnimated:NO];
+        // There is no local pdf, so load from internet
         
-    }else{
-        
-        [self.reader loadData:data
-                     MIMEType:@"application/pdf"
-             textEncodingName:@"UTF-8"
-                      baseURL:nil];
+        data = [NSData dataWithContentsOfURL:self.model.pdfURL
+                                     options:NSDataReadingMappedIfSafe
+                                       error:&error];
+        if (data != nil) {
+            // save the pdf into local document directory
+            BOOL rc = [data writeToURL:localpdfURL
+                               options:NSDataWritingAtomic
+                                 error:&error];
+            if (rc == NO) {
+                NSLog(@"Error al guardar el pdf en local: %@", error.localizedDescription);
+            }
+            
+        }else{
+            // Inform the user that there is no book available
+            NSLog(@"Error, no existe el libro '%@' solicitado", self.model.title);
+            [[[UIAlertView alloc] initWithTitle:@"Libro no encontrado"
+                                        message:@"Sorry, no existe el libro solicitado."
+                                       delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil, nil] show];
+            [self.navigationController popViewControllerAnimated:NO];
+            
+        }
     }
+    
+    // Show the book, no matter if local or remote
+    [self.reader loadData:data
+                 MIMEType:@"application/pdf"
+         textEncodingName:@"UTF-8"
+                  baseURL:nil];
+    
     
 }
 
