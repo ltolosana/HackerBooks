@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		600E27221ACE8D9C0057CDB3 /* LMTLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 600E27211ACE8D9C0057CDB3 /* LMTLibrary.m */; };
 		600E27251ACE90650057CDB3 /* LMTLibraryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 600E27241ACE90650057CDB3 /* LMTLibraryTableViewController.m */; };
+		600E27291AD149CA0057CDB3 /* LMTBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 600E27271AD149CA0057CDB3 /* LMTBookTableViewCell.m */; };
+		600E272A1AD149CA0057CDB3 /* LMTBookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 600E27281AD149CA0057CDB3 /* LMTBookTableViewCell.xib */; };
+		600E272D1AD155400057CDB3 /* book_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 600E272C1AD155400057CDB3 /* book_icon.png */; };
 		607088F91AC2D37800E2F953 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 607088F81AC2D37800E2F953 /* main.m */; };
 		607088FC1AC2D37800E2F953 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 607088FB1AC2D37800E2F953 /* AppDelegate.m */; };
 		607088FE1AC2D37800E2F953 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607088FD1AC2D37800E2F953 /* Images.xcassets */; };
@@ -36,6 +39,10 @@
 		600E27211ACE8D9C0057CDB3 /* LMTLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTLibrary.m; sourceTree = "<group>"; };
 		600E27231ACE90650057CDB3 /* LMTLibraryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMTLibraryTableViewController.h; sourceTree = "<group>"; };
 		600E27241ACE90650057CDB3 /* LMTLibraryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTLibraryTableViewController.m; sourceTree = "<group>"; };
+		600E27261AD149CA0057CDB3 /* LMTBookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMTBookTableViewCell.h; sourceTree = "<group>"; };
+		600E27271AD149CA0057CDB3 /* LMTBookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTBookTableViewCell.m; sourceTree = "<group>"; };
+		600E27281AD149CA0057CDB3 /* LMTBookTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMTBookTableViewCell.xib; sourceTree = "<group>"; };
+		600E272C1AD155400057CDB3 /* book_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book_icon.png; sourceTree = "<group>"; };
 		607088F31AC2D37800E2F953 /* HackerBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607088F71AC2D37800E2F953 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607088F81AC2D37800E2F953 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -74,6 +81,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		600E272B1AD149E60057CDB3 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				600E27261AD149CA0057CDB3 /* LMTBookTableViewCell.h */,
+				600E27271AD149CA0057CDB3 /* LMTBookTableViewCell.m */,
+				600E27281AD149CA0057CDB3 /* LMTBookTableViewCell.xib */,
+			);
+			name = CustomCell;
+			sourceTree = "<group>";
+		};
+		600E272E1AD155470057CDB3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				600E272C1AD155400057CDB3 /* book_icon.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		607088EA1AC2D37800E2F953 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +120,8 @@
 		607088F51AC2D37800E2F953 /* HackerBooks */ = {
 			isa = PBXGroup;
 			children = (
+				600E272E1AD155470057CDB3 /* Resources */,
+				600E272B1AD149E60057CDB3 /* CustomCell */,
 				607089191AC2D44D00E2F953 /* Models */,
 				6070891F1AC2D7DD00E2F953 /* Controllers */,
 				607088FA1AC2D37800E2F953 /* AppDelegate.h */,
@@ -240,6 +267,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6070891E1AC2D7D400E2F953 /* LMTBookViewController.xib in Resources */,
+				600E272D1AD155400057CDB3 /* book_icon.png in Resources */,
+				600E272A1AD149CA0057CDB3 /* LMTBookTableViewCell.xib in Resources */,
 				607089011AC2D37800E2F953 /* LaunchScreen.xib in Resources */,
 				607088FE1AC2D37800E2F953 /* Images.xcassets in Resources */,
 				607089241AC33B7500E2F953 /* LMTSimplePDFViewController.xib in Resources */,
@@ -264,6 +293,7 @@
 				6070891D1AC2D7D400E2F953 /* LMTBookViewController.m in Sources */,
 				607089231AC33B7500E2F953 /* LMTSimplePDFViewController.m in Sources */,
 				600E27221ACE8D9C0057CDB3 /* LMTLibrary.m in Sources */,
+				600E27291AD149CA0057CDB3 /* LMTBookTableViewCell.m in Sources */,
 				607089181AC2D44100E2F953 /* LMTBook.m in Sources */,
 				600E27251ACE90650057CDB3 /* LMTLibraryTableViewController.m in Sources */,
 				607088F91AC2D37800E2F953 /* main.m in Sources */,

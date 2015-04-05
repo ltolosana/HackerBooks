@@ -10,6 +10,7 @@
 #import "LMTLibrary.h"
 #import "LMTBookViewController.h"
 #import "LMTBook.h"
+#import "LMTBookTableViewCell.h"
 
 @interface LMTLibraryTableViewController ()
 
@@ -32,6 +33,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UINib *nib = [UINib nibWithNibName:@"LMTBookTableViewCell"
+                                bundle:[NSBundle mainBundle]];
+    
+    [self.tableView registerNib:nib
+         forCellReuseIdentifier:[LMTBookTableViewCell cellId]];
     
     //Register Notification
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -76,6 +83,10 @@
     return [self.model bookCountForTag:[self.model.tags objectAtIndex:section]];
 }
 
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 70;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
@@ -88,20 +99,16 @@
     
     
     // Create the cell
-    static NSString *cellId = @"BookCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+//    static NSString *cellId = @"BookCell";
+    LMTBookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[LMTBookTableViewCell cellId]
+                                                            forIndexPath:indexPath];
     
-    if (cell == nil) {
-
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                      reuseIdentifier:cellId];
-    }
     
     // Configurarla
     // Es decir, sincronizar modelo (personaje --> vista (celda)
-//    cell.imageView.image = book.;
-    cell.textLabel.text = book.title;
-    cell.detailTextLabel.text = [book.authors componentsJoinedByString:@","];
+    cell.bookIcon.image = [UIImage imageNamed:@"book_icon.png"];
+    cell.title.text = book.title;
+    cell.authors.text = [@"By: " stringByAppendingString:[book.authors componentsJoinedByString:@","]];
     
 
     return cell;
