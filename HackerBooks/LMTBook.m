@@ -93,11 +93,23 @@
 }
 
 -(id) initWithDictionary:(NSDictionary *) dict{
+    // Check in NSUSERDEFAULTS is book is favorite
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    NSArray *favs = [def objectForKey:FAVORITES];
+
+    BOOL isFav = [favs containsObject:[dict objectForKey:@"title"]];
+//    NSUInteger ind = [favs indexOfObject:[dict objectForKey:@"title"]];
+//    [favs ]
+//    if (ind == NSNotFound) {
+//        isFav = NO;
+//    }else{
+//        isFav=YES;
+//    }
     
     return [self initWithTitle:[dict objectForKey:@"title"]
                        authors:[[dict objectForKey:@"authors"] componentsSeparatedByString:@", "]
                           tags:[[dict objectForKey:@"tags"] componentsSeparatedByString:@", "]
-                    isFavorite:NO
+                    isFavorite:isFav
                       imageURL:[NSURL URLWithString:[dict objectForKey:@"image_url"]]
                         pdfURL:[NSURL URLWithString:[dict objectForKey:@"pdf_url"]]];
             

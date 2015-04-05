@@ -33,12 +33,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //Register Notification
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self
+           selector:@selector(notifyThatBookDidChangeFavorite:)
+               name:FAVORITE_STATUS_DID_CHANGE_NOTIFICATION_NAME
+             object:nil];
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
+
+-(void) dealloc{
+    
+    // Unregister notification
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -140,7 +157,15 @@
                                          animated:YES];
 }
 
+
+#pragma mark - Notifications
+//FAVORITE_STATUS_DID_CHANGE_NOTIFICATION_NAME
+-(void)notifyThatBookDidChangeFavorite:(NSNotification *) notification{
     
+    
+    //Update Table
+    [self.tableView reloadData];
+}
     
     
 /*

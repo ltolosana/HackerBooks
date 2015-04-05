@@ -138,10 +138,34 @@
 
 
 -(NSArray *) booksForTag: (NSString *) tag{
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ANY tags like %@",tag];
+    NSArray *newarray = @[];
     
-    //Return a new array with the books with the tag indicated
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ANY tags like %@",tag];
-    NSArray *newarray = [self.books filteredArrayUsingPredicate:predicate];
+    // sort the books
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"title"
+                                                           ascending:YES];
+    [self.books sortUsingDescriptors:@[sort]];
+
+    if ([tag isEqual: @"Favorites"]) {
+        
+        // If tag is Favorites search in NSUSERDEFAULTS
+        NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+        NSArray *favs = [[def objectForKey:FAVORITES] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+        
+//        newarray = [favs filteredArrayUsingPredicate:predicate];
+        for (NSString *favTitle in favs) {
+            newarray = [newarray arrayByAddingObject:[self bookForTitle:favTitle]];
+        }
+        return newarray;
+        
+    }else{
+        //Return a new array with the books with the tag indicated
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ANY tags like %@",tag];
+        newarray = [self.books filteredArrayUsingPredicate:predicate];
+//        newarray = [[self.books filteredArrayUsingPredicate:predicate] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+        
+    }
+
     
     if ([newarray count] == 0) {
         NSLog(@"NIL");
@@ -150,6 +174,7 @@
         NSLog(@"noNIL");
         return newarray;
     }
+    
 }
 
 
@@ -158,6 +183,12 @@
     return [[self booksForTag:tag] objectAtIndex:index];
 }
 
+
+-(LMTBook *) bookForTitle:(NSString *) title{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title like %@",title];
+    NSArray *arr =[self.books filteredArrayUsingPredicate:predicate];
+    return [arr lastObject];
+}
 
 
 @end

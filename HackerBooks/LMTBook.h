@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Luis M Tolosana Simon. All rights reserved.
 //
 
+#define FAVORITES @"Favorites"
+
 @import Foundation;
 @import UIKit;
 
