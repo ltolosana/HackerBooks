@@ -40,6 +40,7 @@ No he cambiado las urls como tal. De hecho las he dejado intactas por si se vaci
 
 
 **Tabla de Libros**
+
 -¿Cómo harías eso? ¿Se te ocurre más de una forma de hacerlo? Explica la decisión de diseño que hayas tomado. 
 
 Siguiendo con el mismo precepto anterior, de que el titulo es único, he decidido guardar en NSUSERDEFAULTS un NSARRAY de NSSTRING con los titulos de los libros favoritos. Cada vez que un libro actualiza su estado de favorito, se añade o quita de este array, actualizando la información de NSUSERDEFAULTS.
@@ -49,7 +50,7 @@ La segunda opción era crear un NSArray de libros, pero esto consume mas memoria
 Lo que no tengo muy claro, es computacionalmente y de cara a la percepción del usuario que opción seria mas adecuada.
 
 -Cuando cambia el valor de la propiedad isFavorite de un AGTBook, la tabla deberá 
-reflejar ese hecho. ¿Cómo lo harías? Es decir, ¿cómo enviarías información de un AGTBook a un AGTLibraryTableViewController? ¿Se te ocurre más de una forma de hacerlo? ¿Cual te parece mejor? Explica tu elección. 
+reflejar ese hecho. ¿Cómo lo harías? Es decir, ¿cómo enviarías información de un AGTBook a un AGTLibraryTableViewController? ¿Se te ocurre más de una forma de hacerlo? ¿Cual te parece mejor? Explica tu elección.
 
 Cuando el libro cambia su estado de favorito, manda una notificación a quien le pueda interesar. La tabla recibe la notificación y se recarga, actualizando su vista y metiendo/sacando el libro de la sección de favoritos.
 Siempre nos has dicho que el modelo avisa de sus cambios con notificaciones, así que si hay mas de una forma de hacerlo (los delegados serian una), la optima es la notificación.
