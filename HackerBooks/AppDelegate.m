@@ -101,8 +101,20 @@
         
         // Creating the model
         LMTLibrary *library = [[LMTLibrary alloc] initWithArray:JSONObjects];
+
+        // Detecting type of screen
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            
+            // iPad type
+            [self configureForPadWithModel:library];
+            
+        }else{
+            // iPhone type
+            [self configureForPhoneWithModel:library];
+        }
+
         
-        [self configureForPadWithModel:library];
+
         
     }else{
         NSLog(@"Error al procesar JSON: %@", error.localizedDescription);
@@ -165,6 +177,24 @@
     // Making rootVC
     self.window.rootViewController = splitVC;
     
+}
+
+-(void) configureForPhoneWithModel:(LMTLibrary *) library{
+    
+    // Creating the controller
+    LMTLibraryTableViewController *libraryVC = [[LMTLibraryTableViewController alloc] initWithModel:library
+                                                                                              style:UITableViewStylePlain];
+    
+    // Creating de combinator
+    UINavigationController *libraryNav = [[UINavigationController alloc] initWithRootViewController:libraryVC];
+    
+    
+    // Delegate
+    libraryVC.delegate = libraryVC;
+    
+    
+    // Making rootVC
+    self.window.rootViewController = libraryNav;
 }
 
 @end

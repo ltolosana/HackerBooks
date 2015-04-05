@@ -23,7 +23,7 @@
 
 @end
 
-@interface LMTLibraryTableViewController : UITableViewController<LMTLibraryTableViewControllerDelegate>
+@interface LMTLibraryTableViewController : UITableViewController <LMTLibraryTableViewControllerDelegate>
 
 @property (strong, nonatomic) LMTLibrary *model;
 @property (weak, nonatomic) id<LMTLibraryTableViewControllerDelegate> delegate;

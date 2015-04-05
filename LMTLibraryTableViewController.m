@@ -156,7 +156,6 @@
 
 #pragma mark - LMTLibraryTableViewControllerDelegate
 -(void) libraryTableViewController:(LMTLibraryTableViewController *)libraryVC didSelectbook:(LMTBook *)book{
-    
 
     LMTBookViewController *bookVC = [[LMTBookViewController alloc] initWithModel:book];
     
