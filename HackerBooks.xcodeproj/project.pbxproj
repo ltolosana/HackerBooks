@@ -22,6 +22,7 @@
 		6070891E1AC2D7D400E2F953 /* LMTBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6070891C1AC2D7D400E2F953 /* LMTBookViewController.xib */; };
 		607089231AC33B7500E2F953 /* LMTSimplePDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 607089211AC33B7500E2F953 /* LMTSimplePDFViewController.m */; };
 		607089241AC33B7500E2F953 /* LMTSimplePDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607089221AC33B7500E2F953 /* LMTSimplePDFViewController.xib */; };
+		60B83B801AD16F70003C3FE4 /* LMTBookViewControlleriPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60B83B7F1AD16F70003C3FE4 /* LMTBookViewControlleriPhone.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		607089201AC33B7500E2F953 /* LMTSimplePDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMTSimplePDFViewController.h; sourceTree = "<group>"; };
 		607089211AC33B7500E2F953 /* LMTSimplePDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTSimplePDFViewController.m; sourceTree = "<group>"; };
 		607089221AC33B7500E2F953 /* LMTSimplePDFViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMTSimplePDFViewController.xib; sourceTree = "<group>"; };
+		60B83B7F1AD16F70003C3FE4 /* LMTBookViewControlleriPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMTBookViewControlleriPhone.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 				6070891A1AC2D7D400E2F953 /* LMTBookViewController.h */,
 				6070891B1AC2D7D400E2F953 /* LMTBookViewController.m */,
 				6070891C1AC2D7D400E2F953 /* LMTBookViewController.xib */,
+				60B83B7F1AD16F70003C3FE4 /* LMTBookViewControlleriPhone.xib */,
 				607089201AC33B7500E2F953 /* LMTSimplePDFViewController.h */,
 				607089211AC33B7500E2F953 /* LMTSimplePDFViewController.m */,
 				607089221AC33B7500E2F953 /* LMTSimplePDFViewController.xib */,
@@ -267,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6070891E1AC2D7D400E2F953 /* LMTBookViewController.xib in Resources */,
+				60B83B801AD16F70003C3FE4 /* LMTBookViewControlleriPhone.xib in Resources */,
 				600E272D1AD155400057CDB3 /* book_icon.png in Resources */,
 				600E272A1AD149CA0057CDB3 /* LMTBookTableViewCell.xib in Resources */,
 				607089011AC2D37800E2F953 /* LaunchScreen.xib in Resources */,
@@ -415,6 +419,7 @@
 				INFOPLIST_FILE = HackerBooks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -425,6 +430,7 @@
 				INFOPLIST_FILE = HackerBooks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

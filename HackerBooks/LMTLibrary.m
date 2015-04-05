@@ -165,13 +165,10 @@
 //        newarray = [[self.books filteredArrayUsingPredicate:predicate] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
         
     }
-
     
     if ([newarray count] == 0) {
-        NSLog(@"NIL");
         return nil;
     }else{
-        NSLog(@"noNIL");
         return newarray;
     }
     

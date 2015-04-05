@@ -19,7 +19,14 @@
 #pragma mark - Init
 -(id) initWithModel:(LMTBook *) model{
     
-    if (self= [super initWithNibName:nil
+    NSString *nibName=nil;
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        nibName = @"LMTBookViewControlleriPhone";
+    }
+    
+    
+    if (self= [super initWithNibName:nibName
                               bundle:nil]) {
         _model = model;
     }
@@ -38,6 +45,9 @@
            selector:@selector(notifyThatBookDidChangeFavorite:)
                name:FAVORITE_STATUS_DID_CHANGE_NOTIFICATION_NAME
              object:nil];
+
+    // Asegurarse de que no se ocupa toda la pantalla cuando estas en un combinador
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 
     // Sincronize model and views
     [self syncViewWithModel];
@@ -186,8 +196,8 @@
 #pragma mark - Utils
 -(void) syncViewWithModel{
     self.titleLabel.text = self.model.title;
-    self.authorsLabel.text = [self.model.authors componentsJoinedByString:@", "];
-    self.tagsLabel.text = [self.model.tags componentsJoinedByString:@", "];
+    self.authorsLabel.text = [@"By: " stringByAppendingString:[self.model.authors componentsJoinedByString:@", "]];
+    self.tagsLabel.text = [@"About: " stringByAppendingString:[self.model.tags componentsJoinedByString:@", "]];
     [self.isFavoriteSwitch setOn:self.model.isFavorite];
 //    self.photoView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.model.imageURL]];
     self.photoView.image = self.model.image;

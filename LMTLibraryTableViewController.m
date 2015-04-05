@@ -47,6 +47,7 @@
                name:FAVORITE_STATUS_DID_CHANGE_NOTIFICATION_NAME
              object:nil];
     
+    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor lightGrayColor]];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -87,6 +88,7 @@
     
     return 70;
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
